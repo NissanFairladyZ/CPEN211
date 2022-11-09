@@ -7,7 +7,7 @@ reg [2:0] SIM_r_addr;
 reg SIM_clk;
 wire [15:0] SIM_r_data;
 
-reg err_reg = 1'b0; //initialize err as 0
+reg err_reg;
 assign err = err_reg;
 
 
@@ -19,6 +19,8 @@ regfile test(.w_data(SIM_w_data),
 		.r_data(SIM_r_data));
 
 initial begin
+
+err_reg = 1'b0; //initialize err as 1'b0
 
 //write 0010100000111111 to r3
 SIM_w_en = 1'b1;
