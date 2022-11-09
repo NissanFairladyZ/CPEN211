@@ -137,6 +137,22 @@ $display("ALU_out for %b & %b = %b is correct, and Z is set to 1", val_A, val_B,
 end
 #1;
 
+val_A = 16'b0000000000000001;
+val_B = 16'b1111111111111111;
+ALU_op = 2'b00;
+#1;
+if(ALU_out != (val_A + val_B)) begin
+$display("Error: ALU_out is %b, expected result is %b", ALU_out, val_A + val_B);
+err_reg = 1'b1;
+end
+else if(Z != 1'b1) begin
+$display("Error: ALU_out is 16'b0, but Z is not 1");
+end
+else begin
+$display("ALU_out for %b + %b = %b is correct, and Z is set to 1", val_A, val_B, ALU_out); 
+end
+#1;
+
 val_A = 16'b1101111110111011;
 val_B = 16'b0111101111011111;
 ALU_op = 2'b11;
