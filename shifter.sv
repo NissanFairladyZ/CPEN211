@@ -3,7 +3,7 @@ module shifter(input [15:0] shift_in, input [1:0] shift_op, output reg [15:0] sh
 always_comb begin
 case(shift_op)
 2'b00: shift_out = shift_in;           //no shift
-	2'b01: shift_out = {shift_in[14:0],      //left shift, LSB = 0
+2'b01: shift_out = {shift_in[14:0],      //left shift, LSB = 0
 			1'b0};
 2'b10: shift_out = {1'b0,             //logical right shift, MSB = 0
 		    shift_in[15:1]};
