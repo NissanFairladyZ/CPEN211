@@ -1,3 +1,5 @@
+`timescale 1 ps / 1 ps
+
 module shifter(input [15:0] shift_in, input [1:0] shift_op, output reg [15:0] shift_out);
 
 always_comb begin
