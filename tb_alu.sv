@@ -1,3 +1,5 @@
+`timescale 1 ps / 1 ps
+
 module tb_ALU(output err);
   reg [15:0] val_A;
   reg [15:0] val_B;
