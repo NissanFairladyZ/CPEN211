@@ -92,7 +92,7 @@ case(rst_n)
 1'b1: state <= stateoutputwire;
 endcase
 
-case(statewire) //instructions differ slightly from written notes due to debugging
+  case(statewire) //instructions differ slightly from written notes due to debugging                           aabbcdefghi
 4'b0000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b01100000000; //0
 4'b0001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b10101000000; //1
 4'b0010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b00000010000; //2
