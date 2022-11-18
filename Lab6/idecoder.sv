@@ -18,11 +18,11 @@ assign w_addr = muxout;
 always_comb begin
 case(ir[4])
 1'b0: sximm5reg = {11'b0,ir[4:0]};   //positive, extend with 0
-1'b1: sximm5reg = {11'b1,ir[4:0]};   //negative, extend with 1
+1'b1: sximm5reg = {11'b11111111111,ir[4:0]};   //negative, extend with 1
 endcase
 case(ir[7])
 1'b0: sximm8reg = {8'b0,ir[7:0]};
-1'b1: sximm8reg = {8'b1,ir[7:0]};
+1'b1: sximm8reg = {8'b11111111,ir[7:0]};
 endcase
 case(reg_sel)
 2'b00: muxout = ir[2:0];  //Rm
