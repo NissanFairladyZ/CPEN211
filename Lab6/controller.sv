@@ -60,7 +60,7 @@ case({start,opcode,ALU_op})
 6'b110111: zeronext = 4'b0010; //(MVN)
 6'b110100: zeronext = 4'b0101; //(ADD)      (3rd state cycle, states 5-8)
 6'b110110: zeronext = 4'b0101; //(AND)
-6'b110101: zeronext = 4'b1001; //(CMP)       (4th state cycle, states 9-11)
+6'b110101: zeronext = 4'b1001; //(CMP)       (4th state cycle, states 9-12)
 default: zeronext = 4'b0000;   //          (remain at state 0 for invalid)
 endcase
 
@@ -75,7 +75,8 @@ case(statewire)
 4'b1000: nonzeronext = 4'b0000; //(end of 3rd cycle)  (ADD, AND)
 4'b1001: nonzeronext = 4'b1010;
 4'b1010: nonzeronext = 4'b1011; 
-4'b1011: nonzeronext = 4'b0000; //(end of 4th cycle)   (CMP)
+4'b1011: nonzeronext = 4'b1100; 
+4'b1100: nonzeronext = 4'b0000; //(end of 4th cycle)   (CMP)
 default: nonzeronext = statewire;
 endcase
 
@@ -104,7 +105,8 @@ endcase
 4'b1000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b01001000000; //8
 4'b1001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b10000100000; //9
 4'b1010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b00000010000; //10
-4'b1011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b00000000100; //11         
+4'b1011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b00000000100; //11  
+4'b1100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b01100000000; //12    
 default: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg} <= 11'b01100000000;
 endcase
 end
