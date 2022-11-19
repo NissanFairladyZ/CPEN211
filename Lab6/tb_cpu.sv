@@ -56,6 +56,10 @@ start = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 $display("Executing MOV R3,%b", 8'b00001111);
 instr = 16'b1101001100001111; //MOV R3, 00001111
 load = 1'b1;
@@ -74,6 +78,10 @@ start = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 load = 1'b1;
 $display("Executing ADD R6, R0, R3");
 instr = 16'b1010000011000011; //ADD R6, R0, R3
@@ -108,6 +116,10 @@ if(out!=16'b1111111111111111) begin
 $display("Error: output %b for ADD R6, R0, R3 does not match expected output %b",out,16'b1111111111111111);
 err_reg = 1'b1;
 end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 else begin
 $display("No errors for ADD R6, R0, R3. R6 now holds %b",out);
 end
@@ -139,6 +151,10 @@ clk = 1'b1;
 clk = 1'b0;
 if(out!=16'b0000000000011111) begin
 $display("Error: output %b for MVN R5, R0, LSL#1 does not match expected output %b",out,16'b0000000000011111);
+err_reg = 1'b1;
+end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
 err_reg = 1'b1;
 end
 else begin
@@ -178,6 +194,10 @@ if({N,V,Z}!=3'b000) begin
 $display("Error: status NVZ %b for CMP R3, R0 does not match expected NVZ %b", {N,V,Z}, 3'b000);
 err_reg = 1'b1;
 end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 else begin
 $display("No errors for CMP R3, R0. Status NVZ is %b",{N,V,Z});
 end
@@ -213,6 +233,10 @@ clk = 1'b1;
 clk = 1'b0;
 if({N,V,Z}!=3'b100) begin
 $display("Error: status NVZ %b for CMP R0, R3 does not match expected NVZ %b", {N,V,Z}, 3'b100);
+err_reg = 1'b1;
+end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
 err_reg = 1'b1;
 end
 else begin
@@ -252,6 +276,10 @@ if({N,V,Z}!=3'b001) begin
 $display("Error: status NVZ %b for CMP R3, R3 does not match expected NVZ %b", {N,V,Z}, 3'b001);
 err_reg = 1'b1;
 end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 else begin
 $display("No errors for CMP R3, R3. Status NVZ is %b",{N,V,Z});
 end
@@ -287,6 +315,10 @@ clk = 1'b1;
 clk = 1'b0;
 if(out!=16'b0000000000101110) begin
 $display("Error: output %b for ADD R1, R3, R5 does not match expected output %b",out,16'b0000000000101110);
+err_reg = 1'b1;
+end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
 err_reg = 1'b1;
 end
 else begin
@@ -326,6 +358,10 @@ if(out!=16'b0000000001001101) begin
 $display("Error: output %b for ADD R2, R1, R5 does not match expected output %b",out,16'b0000000001001101);
 err_reg = 1'b1;
 end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 else begin
 $display("No errors for ADD R2, R1, R5. R2 now holds %b",out);
 end
@@ -363,6 +399,10 @@ if(out!=16'b0000000000001100) begin
 $display("Error: output %b for AND R4, R1, R2 does not match expected output %b",out,16'b0000000000000110);
 err_reg = 1'b1;
 end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
+err_reg = 1'b1;
+end
 else begin
 $display("No errors for AND R4, R1, R2. R4 now holds %b",out);
 end
@@ -394,6 +434,10 @@ clk = 1'b1;
 clk = 1'b0;
 if(out!=16'b0111111111111000) begin
 $display("Error: output %b for MOV R7, R0, LSR#1 does not match expected output %b",out,16'b0111111111111000);
+err_reg = 1'b1;
+end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
 err_reg = 1'b1;
 end
 else begin
@@ -431,6 +475,10 @@ clk = 1'b1;
 clk = 1'b0;
 if({N,V,Z}!=3'b110) begin
 $display("Error: status NVZ %b for CMP R7, R0 does not match expected NVZ %b", {N,V,Z}, 3'b110);
+err_reg = 1'b1;
+end
+else if(waiting!=1'b1) begin
+$display("Error: respective output is correct but CPU is not in wait state");
 err_reg = 1'b1;
 end
 else begin
