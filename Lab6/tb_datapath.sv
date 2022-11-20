@@ -1,3 +1,5 @@
+`timescale 1 ps/ 1 ps
+
 module tb_datapath(output err);
 //  module datapath(input clk, input [15:0] mdata, input [7:0] pc, input [1:0] wb_sel,
  //               input [2:0] w_addr, input w_en, input [2:0] r_addr, input en_A,

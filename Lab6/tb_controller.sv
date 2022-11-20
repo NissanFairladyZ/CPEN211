@@ -1,3 +1,5 @@
+`timescale 1 ps/ 1 ps
+
 module tb_controller(output err);
   //module controller(input clk, input rst_n, input start,
    //               input [2:0] opcode, input [1:0] ALU_op, input [1:0] shift_op,
