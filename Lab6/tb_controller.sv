@@ -67,7 +67,7 @@ $display("Error: controller in state 0, but waiting is not 1");
 err_reg = 1'b1;
 end
 else begin
-$display("Correct output signals for state 0");
+$display("Correct output signals for state 0, and waiting is 1");
 end
 $display("Starting MOV imm state cycle");
 rst_n = 1'b1;
@@ -299,8 +299,29 @@ else begin
 $display("Correct output signals for state 0, and waiting is 1");
 end
 #5;
-
-
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+$display("Ensuring controller remains in wait state multiple clk cycles after most recent instruction ends with start = 0");
+if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
+$display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
+end
+else if(waiting != 1'b1) begin
+$display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
+end
+else begin
+$display("Correct output signals for state 0, and waiting is 1");
+end
 
 end
 
