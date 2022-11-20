@@ -53,15 +53,18 @@ controller controllertest (.clk(clk),
 initial begin
 clk = 1'b0;
 rst_n = 1'b0;
+err_reg = 1'b0;
 #5;
 clk = 1'b1;
 #5;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else if(waiting != 1'b1) begin
 $display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 0");
@@ -81,6 +84,7 @@ clk = 1'b1;
 #5;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b10101000000) begin
 $display("Error: output signals for state 1 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b10101000000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 1");
@@ -92,9 +96,11 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else if(waiting != 1'b1) begin
 $display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 0, and waiting is 1");
@@ -114,6 +120,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b00000010000) begin
 $display("Error: output signals for state 2 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b00000010000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 2");
@@ -124,6 +131,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01000001010) begin
 $display("Error: output signals for state 3 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01000001010);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 3");
@@ -134,6 +142,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01001000010) begin
 $display("Error: output signals for state 4 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01001000010);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 4");
@@ -144,9 +153,11 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else if(waiting != 1'b1) begin
 $display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 0, and waiting is 1");
@@ -166,6 +177,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b10000100000) begin
 $display("Error: output signals for state 5 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b10000100000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 5");
@@ -176,6 +188,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b00000010000) begin
 $display("Error: output signals for state 6 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b00000010000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 6");
@@ -186,6 +199,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b00000001000) begin
 $display("Error: output signals for state 7 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b00000001000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 7");
@@ -196,6 +210,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01001000000) begin
 $display("Error: output signals for state 8 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01001000000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 8");
@@ -206,9 +221,11 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else if(waiting != 1'b1) begin
 $display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 0, and waiting is 1");
@@ -228,6 +245,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b10000100000) begin
 $display("Error: output signals for state 9 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b10000100000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 9");
@@ -238,6 +256,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b00000010000) begin
 $display("Error: output signals for state 10 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b00000010000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 10");
@@ -248,6 +267,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b00000000100) begin
 $display("Error: output signals for state 11 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b00000000100);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 11");
@@ -258,6 +278,7 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 12 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 12");
@@ -268,9 +289,11 @@ clk = 1'b1;
 clk = 1'b0;
 if({reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B}!=11'b01100000000) begin
 $display("Error: output signals for state 0 %b do not match the expected output of %b", {reg_sel,wb_sel,w_en,en_A,en_B,en_C,en_status,sel_A,sel_B},11'b01100000000);
+err_reg = 1'b1;
 end
 else if(waiting != 1'b1) begin
 $display("Error: controller in state 0, but waiting is not 1");
+err_reg = 1'b1;
 end
 else begin
 $display("Correct output signals for state 0, and waiting is 1");
