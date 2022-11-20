@@ -1,3 +1,4 @@
+
 module tb_idecoder(output err);
 
 
@@ -41,10 +42,10 @@ $display("\Test One: ir = 16'b1111110111111111, reg_sel = 2'b00");
   assert (ALU_op === 2'b11) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm5 === 16'b1111000011110000) $display("[PASS] expected result");
+  assert (sximm5 === 16'b1111111111111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm8 === 16'b0000111100001111) $display("[PASS] expected result");
+  assert (sximm8 === 16'b0000000011111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
   assert (shift_op === 2'b11) $display("[PASS] expected result");
@@ -56,8 +57,8 @@ $display("\Test One: ir = 16'b1111110111111111, reg_sel = 2'b00");
   assert (w_addr === 3'b111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111000011110000 || sximm8 != 16'b0000111100001111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
-    err_reg = 1'b1
+  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111111111111111 || sximm8 != 16'b0000000011111111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
+    err_reg = 1'b1;
  
   end
 
@@ -76,10 +77,10 @@ $display("\Test Two: ir = 16'b1111110111111111, reg_sel = 2'b01");
   assert (ALU_op === 2'b11) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm5 === 16'b1111000011110000) $display("[PASS] expected result");
+  assert (sximm5 === 16'b1111111111111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm8 === 16'b0000111100001111) $display("[PASS] expected result");
+  assert (sximm8 === 16'b0000000011111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
   assert (shift_op === 2'b11) $display("[PASS] expected result");
@@ -91,8 +92,8 @@ $display("\Test Two: ir = 16'b1111110111111111, reg_sel = 2'b01");
   assert (w_addr === 3'b111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111000011110000 || sximm8 != 16'b0000111100001111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
-    err_reg = 1'b1
+  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111111111111111 || sximm8 != 16'b0000000011111111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
+    err_reg = 1'b1;
  
   end
 
@@ -110,10 +111,10 @@ $display("\Test Three: ir = 16'b1111110111111111, reg_sel = 2'b10");
   assert (ALU_op === 2'b11) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm5 === 16'b1111000011110000) $display("[PASS] expected result");
+  assert (sximm5 === 16'b1111111111111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  assert (sximm8 === 16'b0000111100001111) $display("[PASS] expected result");
+  assert (sximm8 === 16'b0000000011111111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
   assert (shift_op === 2'b11) $display("[PASS] expected result");
@@ -125,9 +126,10 @@ $display("\Test Three: ir = 16'b1111110111111111, reg_sel = 2'b10");
   assert (w_addr === 3'b111) $display("[PASS] expected result");
   else $error ("[FAIL] wrong result");
 
-  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111000011110000 || sximm8 != 16'b0000111100001111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
-    err_reg = 1'b1
+  if (opcode != 3'b111 || ALU_op != 2'b11 || sximm5 != 16'b1111111111111111 || sximm8 != 16'b0000000011111111 || shift_op != 2'b11 || r_addr != 3'b111 || w_addr != 3'b111) begin
+    err_reg = 1'b1;
   end
 
+end
 
 endmodule: tb_idecoder
