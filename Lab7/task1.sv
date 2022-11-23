@@ -58,9 +58,9 @@ reg [15:0] IR_reg;
 wire [15:0] IR;
 assign IR = IR_reg;
 
-reg start = 1'b1;
+reg startreg;
 wire startwire;
-assign startwire = start;
+assign startwire = startreg;
 
 wire load_ir;
 
@@ -104,6 +104,7 @@ always_ff @(posedge clk) begin
 if(load_ir) IR_reg <= ram_r_data;
 if(load_pc) pc_reg <= next_pc;
 if(load_addr) dar <= ram_w_data[7:0];
+startreg <= waiting;
 end
 
 
