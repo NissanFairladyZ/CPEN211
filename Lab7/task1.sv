@@ -163,7 +163,8 @@ controller control(.clk(clk),
 			.sel_addr(sel_addr),
 			.load_pc(load_pc),
 			.clear_pc(clear_pc),
-			.load_addr(load_addr));
+			.load_addr(load_addr),
+			.load_ir(load_ir));
 
 endmodule: cpu
 	
@@ -179,7 +180,7 @@ module controller(input clk, input rst_n, input start,
                   output en_A, output en_B, output en_C, output en_status,
                   output sel_A, output sel_B,
 		  output ram_w_en, output sel_addr,
-		  output load_pc, output clear_pc, output load_addr);
+		  output load_pc, output clear_pc, output load_addr, output load_ir);
   // your implementation here
 
 //output signal regs
