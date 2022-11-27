@@ -1,4 +1,4 @@
-module task1(input clk, input rst_n, input [7:0] start_pc, output[15:0] out);
+module task2(input clk, input rst_n, input [7:0] start_pc, output[15:0] out);
 
 wire [15:0] ram_r_data;
 wire ram_w_en;
@@ -22,7 +22,7 @@ ram taskram(.clk(clk),
 		.ram_r_data(ram_r_data));
 
 
-endmodule: task1
+endmodule: task2
 
 
 module cpu(input clk, input rst_n, input [7:0] start_pc, input [15:0] ram_r_data,
