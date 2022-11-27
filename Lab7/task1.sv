@@ -310,43 +310,43 @@ case(rst_n)
 endcase
   //new 17 bit outputs
   case(statewire) //instructions differ slightly from written notes due to debugging                           aabbcdefghijklmno
-6'b000000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //0
+6'b000000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //0  wait
 
-6'b000001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10101000000000000; //1
+6'b000001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10101000000000000; //1  load Rn     MOV imm
 
-6'b000010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //2
-6'b000011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01000001010000000; //3
-6'b000100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01001000010000000; //4
+6'b000010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //2  load reg B    MOV/MVN
+6'b000011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01000001010000000; //3  load reg C
+6'b000100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01001000010000000; //4  load Rd
 
-6'b000101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10000100000000000; //5
-6'b000110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //6
-6'b000111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000001000000000; //7
-6'b001000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01001000000000000; //8
+6'b000101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10000100000000000; //5  load reg A    ADD/AND
+6'b000110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //6  load reg B
+6'b000111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000001000000000; //7  load reg C
+6'b001000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01001000000000000; //8  load Rd
 																							      	
-6'b001001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10000100000000000; //9
-6'b001010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //10
-6'b001011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000000100000000; //11  
-6'b001100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //12    
+6'b001001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10000100000000000; //9  load reg A    CMP
+6'b001010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000010000000000; //10 load reg B
+6'b001011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b00000000100000000; //11 load reg status
+6'b001100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //12 extra state 
 
-6'b001101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000011100; //13 
-6'b001110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000011000; //14 
-6'b001111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000010000; //15 
-6'b010000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000010001; //16 
+6'b001101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000011100; //13  load pc (initial, clear_pc = 1)     FETCH
+6'b001110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000011000; //14  load pc (subsequent, clear_pc = 0)
+6'b001111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000010000; //15  load ram_r_data
+6'b010000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000010001; //16  load IR
 
-6'b010001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //17
+6'b010001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000000000; //17  HALT
 
-6'b010010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100100001000000; //18
-6'b010011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100001001000000; //19
-6'b010100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100000001000010; //20
-6'b010101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01110000001000000; //21
-6'b010110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01111000001000000; //22																	
+6'b010010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100100001000000; //18  load reg A (sel_A = 0, sel_B = 1)   LDR
+6'b010011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100001001000000; //19  load reg C
+6'b010100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100000001000010; //20  load DAR
+6'b010101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01110000001000000; //21  load ram_r_data
+6'b010110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01111000001000000; //22  load Rd																
 
-6'b010111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100100001000000; //23															
-6'b011000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100001001000000; //24
-6'b011001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100000001000010; //25
-6'b011010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100010010000000; //26
-6'b011011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100001010000000; //27
-6'b011100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000100000; //28
+6'b010111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100100001000000; //23  load reg A (sel_A = 0, sel_B = 1)   STR															
+6'b011000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100001001000000; //24  load reg C
+6'b011001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100000001000010; //25  load DAR
+6'b011010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100010010000000; //26  load reg B (sel_A = 1, sel_B = 0)
+6'b011011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100001010000000; //27  load reg C
+6'b011100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000100000; //28  load RAM
 
 //ram_w_en,sel_addr,load_pc,clear_pc,load_addr,load_ir
 			
