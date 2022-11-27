@@ -1,3 +1,5 @@
+`timescale 1 ps / 1 ps
+
 module tb_task1(output err);
 
 reg clk;
@@ -18,6 +20,34 @@ initial begin
 err_reg = 1'b0;
 rst_n = 1'b0;
 clk = 1'b0;
+$display("RAM Instruction sequence");
+$display("Initiate with start_pc = #4");
+$display("#4: MOV R0, 8'b11110000");
+$display("#5: MOV R3, 8'b00001111");
+$display("#6: ADD R6, R0, R3");
+$display("#7: MVN R5, R0, LSL#1");
+$display("#8: CMP R3, R0");
+$display("#9: CMP R0, R3");
+$display("#a: CMP R3, R3");
+$display("#b: ADD R1, R3, R5");
+$display("#c: ADD R2, R1, R5");
+$display("#d: AND R4, R1, R2");
+$display("#e: MOV R7, R0, LSR#1");
+$display("#f: CMP R7, R0");
+$display("#10: HALT");
+$display("reset, initiate with start_pc = #14");
+$display("#14: LDR R0, #2E");
+$display("#15: LDR R2, #2F");
+$display("reset, initiate with start_pc = #19");
+$display("#19: STR R7, #30");
+$display("#1a: STR R5, #31");
+$display("#1b: ADD R3, R0, R2 (1010101010101010 + 0101010101010101 = 1111111111111111) Testing LDR");
+$display("#1c: LDR R4, #30");
+$display("#1d: LDR R6, #31");
+$display("#1e: AND R7, R4, R6 (0111111111111000 AND 0000000000011111 = 0000000000011000) Testing STR");
+$display("#1f: HALT");
+$display("");
+
 #5;
 clk = 1'b1;
 #5;
@@ -108,6 +138,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #6");
+if(out != 16'b1111111111111111) begin
+$display("Error: output for instruction #6 %b doesn't match expected %b", out, 16'b1111111111111111);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #6 executed successfully, out is %b", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -140,6 +178,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #7");
+if(out != 16'b0000000000011111) begin
+$display("Error: output for instruction #7 %b doesn't match expected %b", out, 16'b0000000000011111);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #7 executed successfully, out is %b", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -284,6 +330,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #b");
+if(out != 16'b0000000000101110) begin
+$display("Error: output for instruction #b %b doesn't match expected %b", out, 16'b0000000000101110);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #b executed successfully, out is %b", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -320,6 +374,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #c");
+if(out != 16'b0000000001001101) begin
+$display("Error: output for instruction #c %b doesn't match expected %b", out, 16'b0000000001001101);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #c executed successfully, out is %b", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -356,6 +418,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #d");
+if(out != 16'b0000000000001100) begin
+$display("Error: output for instruction #d %b doesn't match expected %b", out, 16'b0000000000001100);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #d executed successfully, out is %b", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -388,6 +458,15 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #e");
+if(out != 16'b0111111111111000) begin
+$display("Error: output for instruction #e %b doesn't match expected %b", out, 16'b0111111111111000);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #e executed successfully, out is %b", out);
+end
+$display("Lab 6 instructions have been fully tested, now testing LDR and STR");
 #5;
 clk = 1'b1;
 #5;
@@ -698,6 +777,14 @@ clk = 1'b0;
 clk = 1'b1;
 #5;
 clk = 1'b0;
+$display("Testing instruction #1b");
+if(out != 16'b1111111111111111) begin
+$display("Error: output for instruction #1b %b doesn't match expected %b", out, 16'b1111111111111111);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #1b executed successfully, out is %b. The values in #2E and #2F now reside in R0 and R2", out);
+end
 #5;
 clk = 1'b1;
 #5;
@@ -775,6 +862,65 @@ clk = 1'b1;
 #5;
 clk = 1'b0;
 #5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+$display("Testing instruction #1e");
+if(out != 16'b0000000000011000) begin
+$display("Error: output for instruction #1e %b doesn't match expected %b", out, 16'b0000000000011000);
+err_reg = 1'b1;
+end
+else begin
+$display("Instruction #1e executed successfully, out is %b. The values from R7 and R0 now reside in #30 and #31, which were then loaded into R4 and R6", out);
+end
+#5;
+clk = 1'b1;
+#5;
+clk = 1'b0;
+if(err_reg == 1'b1) begin
+$display("Errors have been detected, review transcript for information");
+end
+else begin
+$display("No errors detected, machine has successfully executed all instructions");
+end
+#5;
+
 end
 
 
