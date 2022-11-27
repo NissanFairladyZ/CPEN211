@@ -250,7 +250,7 @@ case({start,opcode,ALU_op})
 6'b110101: zeronext = 6'b001001; //(CMP)       (4th state cycle, states 9-12)
 6'b111100: zeronext = 6'b010001; //(HALT)      (HALT state)
 6'b101100: zeronext = 6'b010010; //(LDR)       (5th state cycle, states 18-22)
-
+6'b110000: zeronext = 6'b010111; //(STR)
 
 
 default: zeronext = 6'b000000;   //          (remain at state 0 for invalid)
@@ -278,6 +278,13 @@ case(statewire)
 6'b010100: nonzeronext = 6'b010101;
 6'b010101: nonzeronext = 6'b010110;
 6'b010110: nonzeronext = 6'b001110; //(end of 5th cycle)  (LDR) 
+
+6'b010111: nonzeronext = 6'b011000;
+6'b011000: nonzeronext = 6'b011001;
+6'b011001: nonzeronext = 6'b011010;
+6'b011010: nonzeronext = 6'b011011;
+6'b011011: nonzeronext = 6'b011100;
+6'b011100: nonzeronext = 6'b001110; //(end of 6th cycle) (STR)
 
 6'b001101: nonzeronext = 6'b001111; // initial fetch state (resets here)
 6'b001110: nonzeronext = 6'b001111; // subsequent fetch state (after every instruction)
@@ -334,6 +341,12 @@ endcase
 6'b010101: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01110000001000000; //21
 6'b010110: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01111000001000000; //22																	
 
+6'b010111: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100100001000000; //23															
+6'b011000: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100001001000000; //24
+6'b011001: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b10100000001000010; //25
+6'b011010: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100010010000000; //26
+6'b011011: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100001010000000; //27
+6'b011100: {reg_sel_reg,wb_sel_reg,w_en_reg,en_A_reg,en_B_reg,en_C_reg,en_status_reg,sel_A_reg,sel_B_reg,ram_w_en_reg,sel_addr_reg,load_pc_reg,clear_pc_reg,load_addr_reg,load_ir_reg} <= 17'b01100000000100000; //28
 
 //ram_w_en,sel_addr,load_pc,clear_pc,load_addr,load_ir
 			
