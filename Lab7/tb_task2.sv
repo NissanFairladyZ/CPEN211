@@ -1,11 +1,11 @@
-module tb_task2(output err);
+module tb_task1(output err);
 
 reg clk;
 reg rst_n;
 reg [7:0] start_pc;
 wire [15:0] out;
 
-task2 testtask2(.clk(clk),
+task1 testtask1(.clk(clk),
 		.rst_n(rst_n),
 		.start_pc(start_pc),
 		.out(out));
