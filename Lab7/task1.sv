@@ -250,7 +250,7 @@ case({start,opcode,ALU_op})
 6'b110101: zeronext = 6'b001001; //(CMP)       (4th state cycle, states 9-12)
 6'b111100: zeronext = 6'b010001; //(HALT)      (HALT state)
 6'b101100: zeronext = 6'b010010; //(LDR)       (5th state cycle, states 18-22)
-6'b110000: zeronext = 6'b010111; //(STR)
+6'b110000: zeronext = 6'b010111; //(STR)       (6th state cycle, states 23-28)
 
 
 default: zeronext = 6'b000000;   //          (remain at state 0 for invalid)
